@@ -98,13 +98,7 @@ The server will typically run on http://localhost:3000 by default.
 The API provides several RESTful endpoints:
 
 - `GET /`: Health check endpoint that returns the Elasticsearch cluster status
-- `GET /api/listings`: Get all listings
-- `GET /api/listings/:country`: Get listings filtered by country
 
-Example:
-```bash
-# Get all Singapore listings
-curl http://localhost:3000/api/listings/SG
 ```
 
 ### GraphQL Interface
@@ -114,16 +108,6 @@ The application also exposes a GraphQL endpoint at `/graphql`. You can access th
 Example queries:
 
 ```graphql
-# Get supply statistics for Singapore
-query {
-  supplyStats(country: "SG") {
-    totalListings
-    minPrice
-    maxPrice
-    avgPrice
-  }
-}
-
 # Get aggregated listing stats with filters
 query {
   listingAggregationStats(
