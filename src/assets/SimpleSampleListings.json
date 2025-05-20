@@ -1,0 +1,75 @@
+{
+  "took": 3,
+  "timed_out": false,
+  "hits": {
+    "total": {
+      "value": 3,
+      "relation": "eq"
+    },
+    "hits": [
+      {
+        "_id": "1",
+        "_source": {
+          "id": 1,
+          "statusCode": "ACT",
+          "country": "SG",
+          "location": {
+            "city": "Singapore",
+            "region": {
+              "text": "Central"
+            },
+            "fullAddress": "123 Sample St, Singapore"
+          },
+          "internalMeta": {
+            "price": {
+              "min": 1000000,
+              "max": 1200000
+            }
+          }
+        }
+      },
+      {
+        "_id": "2",
+        "_source": {
+          "id": 2,
+          "statusCode": "ACT",
+          "country": "SG",
+          "location": {
+            "city": "Singapore",
+            "region": {
+              "text": "East"
+            },
+            "fullAddress": "456 Sample Ave, Singapore"
+          },
+          "internalMeta": {
+            "price": {
+              "min": 800000,
+              "max": 900000
+            }
+          }
+        }
+      },
+      {
+        "_id": "3",
+        "_source": {
+          "id": 3,
+          "statusCode": "ACT",
+          "country": "SG",
+          "location": {
+            "city": "Singapore",
+            "region": {
+              "text": "West"
+            },
+            "fullAddress": "789 Sample Blvd, Singapore"
+          },
+          "internalMeta": {
+            "price": {
+              "min": 1500000,
+              "max": 1700000
+            }
+          }
+        }
+      }
+    ]
+  }
+}

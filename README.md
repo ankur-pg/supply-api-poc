@@ -24,50 +24,73 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a proof of concept for a supply API that integrates with Elasticsearch to provide property listing data.
 
-## Installation
+## Setup
 
-```bash
-$ npm install
-```
+### Prerequisites
 
-## Running the app
+- Node.js (v18+)
+- Docker and Docker Compose
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
+### Installation
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Support
+### Running Elasticsearch
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+docker compose up -d
+```
 
-## Stay in touch
+This will start an Elasticsearch instance on port 9201.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Importing Sample Data
 
-## License
+```bash
+npm run import-data
+```
 
-Nest is [MIT licensed](LICENSE).
+This will import the sample listing data from `src/assets/SimpleSampleListings.json` into the Elasticsearch index named `listings`.
+
+## Available Scripts
+
+- `npm run start`: Start the NestJS application
+- `npm run start:dev`: Start the NestJS application in watch mode
+- `npm run import-data`: Import sample data into Elasticsearch
+- `npm run start:api`: Start the NestJS API server
+
+## API Endpoints
+
+When using the simple API server (`npm run simple-api`), the following endpoints are available:
+
+- `GET /`: Health check endpoint that returns the Elasticsearch cluster status
+- `GET /api/listings`: Get all listings
+- `GET /api/listings/:country`: Get listings filtered by country
+
+## Working with GraphQL
+
+The NestJS application also exposes a GraphQL endpoint at `/graphql` for querying supply statistics.
+
+```graphql
+query {
+  supplyStats(country: "SG") {
+    totalListings
+    minPrice
+    maxPrice
+    avgPrice
+  }
+}
+```
+
+## Troubleshooting
+
+### Port Conflict
+
+If you have an existing Elasticsearch instance running on port 9200, the Docker container will use port 9201 instead. Update the connection configuration in `app.module.ts` and scripts if needed.
+
+### Elasticsearch Client Version
+
+This project uses Elasticsearch client version 8.10.0, which should be compatible with the Elasticsearch 8.11.1 server.

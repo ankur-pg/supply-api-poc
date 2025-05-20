@@ -1,0 +1,232 @@
+[
+  {
+    "id": 25531709,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "temp HDB listing street"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 1350892,
+        "max": 1350892
+      },
+      "psf": 964.9229
+    },
+    "dates": {
+      "created": {
+        "unix": 1741775983
+      },
+      "updated": {
+        "unix": 1741776004
+      }
+    }
+  },
+  {
+    "id": 25531724,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "temp HDB listing street"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 7795303,
+        "max": 7795303
+      },
+      "psf": 5568.0736
+    },
+    "dates": {
+      "created": {
+        "unix": 1741778037
+      },
+      "updated": {
+        "unix": 1741778064
+      }
+    }
+  },
+  {
+    "id": 25531728,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "temp HDB listing street"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 3860058,
+        "max": 3860058
+      },
+      "psf": 2757.1843
+    },
+    "dates": {
+      "created": {
+        "unix": 1741779360
+      },
+      "updated": {
+        "unix": 1741779373
+      }
+    }
+  },
+  {
+    "id": 25532054,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "temp HDB listing street"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 5006685,
+        "max": 5006685
+      },
+      "psf": 3576.2036
+    },
+    "dates": {
+      "created": {
+        "unix": 1741786742
+      },
+      "updated": {
+        "unix": 1741786755
+      }
+    }
+  },
+  {
+    "id": 25532422,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "temp HDB listing street"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 2289769,
+        "max": 2289769
+      },
+      "psf": 1635.5493
+    },
+    "dates": {
+      "created": {
+        "unix": 1741929408
+      },
+      "updated": {
+        "unix": 1741929420
+      }
+    }
+  },
+  {
+    "id": 25532106,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "temp HDB listing street"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 7303548,
+        "max": 7303548
+      },
+      "psf": 5216.82
+    },
+    "dates": {
+      "created": {
+        "unix": 1741787254
+      },
+      "updated": {
+        "unix": 1741787266
+      }
+    }
+  },
+  {
+    "id": 25518680,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "20 Lentor Central"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 975000,
+        "max": 975000
+      },
+      "psf": 2105.8315
+    },
+    "dates": {
+      "created": {
+        "unix": 1740286651
+      },
+      "updated": {
+        "unix": 1745296982
+      }
+    }
+  },
+  {
+    "id": 25517525,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "20 Lentor Central"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 1380000,
+        "max": 1380000
+      },
+      "psf": 1755.7252
+    },
+    "dates": {
+      "created": {
+        "unix": 1740189905
+      },
+      "updated": {
+        "unix": 1745296982
+      }
+    }
+  },
+  {
+    "id": 25522920,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "20 Lentor Central"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 975000,
+        "max": 975000
+      },
+      "psf": 2105.8315
+    },
+    "dates": {
+      "created": {
+        "unix": 1740550901
+      },
+      "updated": {
+        "unix": 1745296982
+      }
+    }
+  },
+  {
+    "id": 25527395,
+    "statusCode": "ACT",
+    "country": "SG",
+    "location": {
+      "fullAddress": "20 Lentor Central"
+    },
+    "internalMeta": {
+      "price": {
+        "min": 2100000,
+        "max": 2100000
+      },
+      "psf": 1951.6729
+    },
+    "dates": {
+      "created": {
+        "unix": 1740815980
+      },
+      "updated": {
+        "unix": 1745296982
+      }
+    }
+  }
+]

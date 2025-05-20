@@ -1,0 +1,35 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ValueGroup {
+  price: Float
+  psf: Float
+}
+
+type CountGroup {
+  listing_id: Int!
+}
+
+type ListingAggregationStats {
+  count: CountGroup!
+  min: ValueGroup!
+  max: ValueGroup!
+  avg: ValueGroup!
+}
+
+type Query {
+  listingAggregation(filters: ListingAggregationInput!): ListingAggregationStats!
+}
+
+input ListingAggregationInput {
+  country: String!
+  region: String
+  city: String
+  minPrice: Float
+  maxPrice: Float
+  minBedrooms: Int
+  maxBedrooms: Int
+  createdAfter: Int
+  updatedBefore: Int
+}
