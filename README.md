@@ -1,45 +1,43 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Supply API Proof of Concept
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This repository contains a proof of concept for a property supply API that integrates with Elasticsearch to provide property listing data. It's built using NestJS and provides both GraphQL API interfaces.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+You can view the contract here - https://propertyguru.atlassian.net/wiki/spaces/ATS/pages/34458173765/Draft+Demand+and+Supply+SOT+API
 
-## Description
+## Getting Started for First-Time Users
 
-This is a proof of concept for a supply API that integrates with Elasticsearch to provide property listing data.
-
-## Setup
+This guide will help you set up and run the Supply API on your local machine.
 
 ### Prerequisites
 
-- Node.js (v18+)
-- Docker and Docker Compose
+- Node.js (v18+) - [Download from nodejs.org](https://nodejs.org/)
+- Docker and Docker Compose - [Install Docker Desktop](https://www.docker.com/products/docker-desktop)
+- Git (for cloning the repository)
 
-### Installation
+### Step 1: Clone the Repository
 
 ```bash
-npm install
+git clone <repository-url>
+cd supply-api-poc
 ```
 
-### Running Elasticsearch
+### Step 2: Install Dependencies
+
+The project may have dependency conflicts due to specific version requirements. Use the following command to install dependencies:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+If you encounter specific errors with packages like `@apollo/server`, you can install them manually:
+
+```bash
+npm install @apollo/server --save --legacy-peer-deps
+```
+
+### Step 3: Start Elasticsearch
+
+The application requires Elasticsearch. Start it using Docker Compose:
 
 ```bash
 docker compose up -d
@@ -47,34 +45,76 @@ docker compose up -d
 
 This will start an Elasticsearch instance on port 9201.
 
-### Importing Sample Data
+### Step 4: Import Sample Data
+
+Before using the API, you need to import the sample property listings data into Elasticsearch:
 
 ```bash
 npm run import-data
 ```
 
-This will import the sample listing data from `src/assets/SimpleSampleListings.json` into the Elasticsearch index named `listings`.
+This script:
+- Connects to your local Elasticsearch instance
+- Reads the sample data from `src/assets/SimpleSampleListingsV2.json`
+- Creates or recreates the `listings` index
+- Imports all property listings into the index
+
+If you run into TypeScript-related issues when running the import script, you can run it directly with ts-node:
+
+```bash
+npx ts-node -r tsconfig-paths/register src/scripts/import-data.ts
+```
+
+### Step 5: Start the API Server
+
+Once the data is imported, start the NestJS application:
+
+```bash
+npm run start
+```
+
+Or for development with hot reload:
+
+```bash
+npm run start:dev
+```
+
+The server will typically run on http://localhost:3000 by default.
 
 ## Available Scripts
 
 - `npm run start`: Start the NestJS application
-- `npm run start:dev`: Start the NestJS application in watch mode
+- `npm run start:dev`: Start the NestJS application with hot reload
+- `npm run start:debug`: Start with debugging enabled
+- `npm run start:port`: Start on specific port (PORT=3000)
+- `npm run build`: Build the application
 - `npm run import-data`: Import sample data into Elasticsearch
-- `npm run start:api`: Start the NestJS API server
+- `npm run lint`: Run ESLint
 
-## API Endpoints
+## Using the API
 
-When using the simple API server (`npm run simple-api`), the following endpoints are available:
+### REST Endpoints
+
+The API provides several RESTful endpoints:
 
 - `GET /`: Health check endpoint that returns the Elasticsearch cluster status
 - `GET /api/listings`: Get all listings
 - `GET /api/listings/:country`: Get listings filtered by country
 
-## Working with GraphQL
+Example:
+```bash
+# Get all Singapore listings
+curl http://localhost:3000/api/listings/SG
+```
 
-The NestJS application also exposes a GraphQL endpoint at `/graphql` for querying supply statistics.
+### GraphQL Interface
+
+The application also exposes a GraphQL endpoint at `/graphql`. You can access the GraphQL Playground at this URL in your browser to test queries.
+
+Example queries:
 
 ```graphql
+# Get supply statistics for Singapore
 query {
   supplyStats(country: "SG") {
     totalListings
@@ -83,14 +123,83 @@ query {
     avgPrice
   }
 }
+
+# Get aggregated listing stats with filters
+query {
+  listingAggregationStats(
+    input: {
+      country: "SG",
+      city: "Singapore",
+      minPrice: 500000
+    }
+  ) {
+    count {
+      listing_id
+    }
+    min {
+      price
+      psf
+    }
+    max {
+      price
+      psf
+    }
+    avg {
+      price
+      psf
+    }
+  }
+}
 ```
+
+## Project Structure
+
+- `/src/assets` - Contains sample data files
+- `/src/scripts` - Utility scripts like the data import tool
+- `/src/graphql` - GraphQL models and DTOs
+- `/src/supply` - Supply service implementation and resolver
+- `/src/listings` - REST API controllers for listings
+- `/src/utils` - Utility functions for Elasticsearch
 
 ## Troubleshooting
 
+### Dependency Conflicts
+
+If you encounter dependency conflicts during installation, try using:
+```bash
+npm install --legacy-peer-deps
+```
+
+### Missing Modules
+
+If you get "Cannot find module" errors when starting the application:
+```bash
+# Install the specific missing module
+npm install @apollo/server --legacy-peer-deps
+```
+
 ### Port Conflict
 
-If you have an existing Elasticsearch instance running on port 9200, the Docker container will use port 9201 instead. Update the connection configuration in `app.module.ts` and scripts if needed.
+If you have an existing Elasticsearch instance running on port 9200, the Docker container will use port 9201 instead. The connection configuration in the codebase is already set to use port 9201.
 
-### Elasticsearch Client Version
+### Elasticsearch Connection Issues
 
-This project uses Elasticsearch client version 8.10.0, which should be compatible with the Elasticsearch 8.11.1 server.
+Check that your Elasticsearch container is running:
+```bash
+docker ps
+```
+
+If it's not running, restart it:
+```bash
+docker compose up -d
+```
+
+## Development
+
+### Adding New Features
+
+When adding new features:
+1. Create appropriate models in `/src/graphql/models`
+2. Define input DTOs in `/src/graphql/dto`
+3. Implement the service logic in `/src/supply/supply.service.ts`
+4. Expose GraphQL endpoints in `/src/supply/supply.resolver.ts`
