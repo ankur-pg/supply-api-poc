@@ -15,4 +15,6 @@ export class ListingAggregationInput {
 
   @Field(() => Int, { nullable: true }) createdAfter?: number;
   @Field(() => Int, { nullable: true }) updatedBefore?: number;
+
+  @Field({ nullable: true }) groupBy?: 'region';
 }

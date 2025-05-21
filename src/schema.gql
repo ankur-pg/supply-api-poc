@@ -12,11 +12,19 @@ type CountGroup {
   uniqueAddresses: Int
 }
 
+type RegionGroupStats {
+  region: String!
+  totalListings: Int!
+  avgPrice: Float
+  avgPSF: Float
+}
+
 type ListingAggregationStats {
-  count: CountGroup!
-  min: ValueGroup!
-  max: ValueGroup!
-  avg: ValueGroup!
+  count: CountGroup
+  min: ValueGroup
+  max: ValueGroup
+  avg: ValueGroup
+  groupByRegion: [RegionGroupStats!]
 }
 
 type Query {
@@ -33,4 +41,5 @@ input ListingAggregationInput {
   maxBedrooms: Int
   createdAfter: Int
   updatedBefore: Int
+  groupBy: String
 }
