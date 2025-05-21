@@ -4,9 +4,7 @@ This repository contains a proof of concept for a property supply API that integ
 
 You can view the contract here - https://propertyguru.atlassian.net/wiki/spaces/ATS/pages/34458173765/Draft+Demand+and+Supply+SOT+API
 
-## Getting Started for First-Time Users
-
-This guide will help you set up and run the Supply API on your local machine.
+## Getting Started
 
 ### Prerequisites
 
@@ -93,14 +91,6 @@ The server will typically run on http://localhost:3000 by default.
 
 ## Using the API
 
-### REST Endpoints
-
-The API provides several RESTful endpoints:
-
-- `GET /`: Health check endpoint that returns the Elasticsearch cluster status
-
-```
-
 ### GraphQL Interface
 
 The application also exposes a GraphQL endpoint at `/graphql`. You can access the GraphQL Playground at this URL in your browser to test queries.
@@ -110,30 +100,17 @@ Example queries:
 ```graphql
 # Get aggregated listing stats with filters
 query {
-  listingAggregationStats(
-    input: {
-      country: "SG",
-      city: "Singapore",
-      minPrice: 500000
-    }
-  ) {
+  listingAggregation(filters: { country: "SG" }) {
     count {
       listing_id
+      uniqueAddresses
     }
-    min {
-      price
-      psf
-    }
-    max {
-      price
-      psf
-    }
-    avg {
-      price
-      psf
-    }
+    min { price psf }
+    max { price psf }
+    avg { price psf }
   }
 }
+
 ```
 
 ## Project Structure

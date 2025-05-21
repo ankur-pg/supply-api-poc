@@ -9,6 +9,7 @@ type ValueGroup {
 
 type CountGroup {
   listing_id: Int!
+  uniqueAddresses: Int
 }
 
 type ListingAggregationStats {

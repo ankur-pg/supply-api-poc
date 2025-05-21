@@ -30,6 +30,9 @@ export class SupplyService {
         },
         aggs: {
           listing_id: { value_count: { field: 'id' } },
+          uniqueAddressCount: {
+            cardinality: { field: 'location.fullAddress.keyword' }
+          },
           min_price: { min: { field: 'internalMeta.price.min' } },
           max_price: { max: { field: 'internalMeta.price.max' } },
           avg_price: { avg: { field: 'internalMeta.price.min' } },
@@ -44,7 +47,8 @@ export class SupplyService {
 
     return {
       count: {
-        listing_id: aggs.listing_id?.value ?? 0
+        listing_id: aggs.listing_id?.value ?? 0,
+        uniqueAddresses: aggs.uniqueAddressCount?.value ?? 0
       },
       min: {
         price: aggs.min_price?.value ?? null,
